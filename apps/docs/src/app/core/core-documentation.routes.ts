@@ -464,7 +464,14 @@ export const ROUTES: Routes = [
                     import('./component-docs/moment-datetime-adapter/moment-datetime-adapter-docs.module').then(
                         (m) => m.MomentDatetimeAdapterDocsModule
                     )
-            }
+            },
+            {
+                path: 'icon-tab-bar',
+                loadChildren: () =>
+                    import('./component-docs/icon-tab-bar/icon-tab-bar-docs.module').then(
+                        (m) => m.IconTabBarDocsModule
+                    )
+            },
         ]
     }
 ];
