@@ -918,7 +918,8 @@
       ],
       "implicitDependencies": [
         "core-icon",
-        "core-popover"
+        "core-popover",
+        "core-utils"
       ]
     }
   }
