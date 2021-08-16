@@ -467,10 +467,7 @@ export const ROUTES: Routes = [
             },
             {
                 path: 'icon-tab-bar',
-                loadChildren: () =>
-                    import('./component-docs/icon-tab-bar/icon-tab-bar-docs.module').then(
-                        (m) => m.IconTabBarDocsModule
-                    )
+                loadChildren: () => import('./component-docs/icon-tab-bar/icon-tab-bar-docs.module').then((m) => m.IconTabBarDocsModule)
             },
         ]
     }
