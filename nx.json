@@ -917,9 +917,9 @@
         "fd"
       ],
       "implicitDependencies": [
+        "core-utils",
         "core-icon",
-        "core-popover",
-        "core-utils"
+        "core-popover"
       ]
     }
   }
