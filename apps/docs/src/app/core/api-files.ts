@@ -1,11 +1,3 @@
-import { IconTabBarComponent } from '@fundamental-ngx/core';
-import { IconTabBarTextTypeComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/icon-tab-bar-text-type/icon-tab-bar-text-type.component';
-import { IconTabBarIconTypeComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/icon-tab-bar-icon-type/icon-tab-bar-icon-type.component';
-import { IconTabBarProcessTypeComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/icon-tab-bar-process-type/icon-tab-bar-process-type.component';
-import { IconTabBarFilterTypeComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/icon-tab-bar-filter-type/icon-tab-bar-filter-type.component';
-import { IconTabBarPopoverComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/popovers/icon-tab-bar-popover/icon-tab-bar-popover.component';
-import { TextTypePopoverComponent } from '../../../../../libs/core/src/lib/icon-tab-bar/components/popovers/text-type-popover/text-type-popover.component';
-
 /**
  * Files to display in the API tab of each component.
  * Names should be without hyphens, and capitalized where hyphens occur normally.
@@ -390,14 +382,5 @@ export const API_FILES = {
     resizableCardLayout: [
         'ResizableCardLayoutComponent',
         'ResizableCardItemComponent'
-    ],
-    iconTabBar: [
-        'IconTabBarComponent',
-        'IconTabBarTextTypeComponent',
-        'IconTabBarIconTypeComponent',
-        'IconTabBarProcessTypeComponent',
-        'IconTabBarFilterTypeComponent',
-        'IconTabBarPopoverComponent',
-        'TextTypePopoverComponent',
     ],
 };

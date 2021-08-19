@@ -52,6 +52,7 @@ import { PlatformConfig } from './platform.config';
 import { PlatformPageFooterModule } from './components/page-footer/page-footer.module';
 import { PlatformFormGeneratorModule } from './components/form/form-generator/fdp-form-generator.module';
 import { PlatformWizardGeneratorModule } from './components/wizard-generator/wizard-generator.module';
+import { PlatformIconTabBarModule } from './components/icon-tab-bar/icon-tab-bar.module';
 
 @NgModule({
     imports: [CommonModule, FundamentalNgxCoreModule],
@@ -103,7 +104,8 @@ import { PlatformWizardGeneratorModule } from './components/wizard-generator/wiz
         PlatformSliderModule,
         PlatformPageFooterModule,
         PlatformFormGeneratorModule,
-        PlatformWizardGeneratorModule
+        PlatformWizardGeneratorModule,
+        PlatformIconTabBarModule,
     ],
     declarations: []
 })
