@@ -464,7 +464,7 @@ export const ROUTES: Routes = [
                     import('./component-docs/moment-datetime-adapter/moment-datetime-adapter-docs.module').then(
                         (m) => m.MomentDatetimeAdapterDocsModule
                     )
-            },
+            }
         ]
     }
 ];

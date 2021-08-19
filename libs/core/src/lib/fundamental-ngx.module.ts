@@ -176,7 +176,7 @@ import { MessagePageModule } from '@fundamental-ngx/core/message-page';
         StatusIndicatorModule,
         GridListModule,
         ResizableCardLayoutModule,
-        MessagePageModule,
+        MessagePageModule
     ],
     providers: []
 })
