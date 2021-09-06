@@ -109,6 +109,7 @@
         "core-shellbar",
         "core-side-navigation",
         "core-slider",
+        "core-splitter",
         "core-split-button",
         "core-status-indicator",
         "core-step-input",
@@ -737,6 +738,15 @@
       "implicitDependencies": [
         "core-utils",
         "core-popover"
+      ]
+    },
+    "core-splitter": {
+      "tags": [
+        "fd"
+      ],
+      "implicitDependencies": [
+        "core-utils",
+        "core-icon"
       ]
     },
     "core-split-button": {
