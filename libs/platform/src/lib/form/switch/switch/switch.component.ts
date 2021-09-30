@@ -1,4 +1,4 @@
-import {
+import { // TODO: done partially verified cva test 1. emits 3 times on change 2. validation error in example
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,

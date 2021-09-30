@@ -1,4 +1,4 @@
-import {
+import { // TODO: verified cva test
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,

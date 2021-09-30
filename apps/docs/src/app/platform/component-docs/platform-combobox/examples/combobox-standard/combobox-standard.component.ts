@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { DATA_PROVIDERS } from '@fundamental-ngx/platform/shared';
 import { ComboboxSelectionChangeEvent } from '@fundamental-ngx/platform/form';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'fdp-combobox-standard',
@@ -10,6 +11,7 @@ import { ComboboxSelectionChangeEvent } from '@fundamental-ngx/platform/form';
     providers: [{ provide: DATA_PROVIDERS, useValue: new Map() }]
 })
 export class ComboboxStandardComponent {
+    ctrl = new FormControl();
     dataSource = [
         'Apple',
         'Banana',
@@ -39,6 +41,17 @@ export class ComboboxStandardComponent {
     selectedItem4 = this.dataSource[3];
     selectedItem5 = null;
     selectedItem6 = null;
+
+    constructor() {
+        this.ctrl.valueChanges.subscribe(console.log)
+    }
+
+    update(emitEvent: boolean) {
+        this.ctrl.setValue('Banana', {emitEvent});
+    }
+    reset(emitEvent: boolean) {
+        this.ctrl.reset(undefined, {emitEvent});
+    }
 
     onSelect1(item: ComboboxSelectionChangeEvent): void {
        this.selectedItem1 = item.payload;

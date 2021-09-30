@@ -1,9 +1,11 @@
+<button (click)="asd(false)">no event</button>
+<button (click)="asd(true)">event</button>
+
 <main class="fd-page">
     <div class="fd-page__content fd-has-background-color-neutral-2">
         <h4>Enter value between {{ MIN_VALUE }} and {{ MAX_VALUE }}</h4>
         <fdp-form-group #fg>
             <fdp-form-field
-                #formField
                 id="reactive-form-qty"
                 label="Quantity"
                 placeholder="Things quantity"
@@ -14,7 +16,7 @@
                     [id]="'reactive-form-qty'"
                     ariaLabelledBy="step-input-valueRequiredError step-input-valueMinError step-input-valueMaxError"
                     name="qty"
-                    [formControl]="formField.formControl"
+                    [formControl]="ctrl"
                 ></fdp-number-step-input>
             </fdp-form-field>
 

@@ -1,4 +1,4 @@
-import { Direction } from '@angular/cdk/bidi';
+import { Direction } from '@angular/cdk/bidi'; // TODO: done partially verified cva test, throws an error on "null"
 import { DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { CdkConnectedOverlay } from '@angular/cdk/overlay';
 import {

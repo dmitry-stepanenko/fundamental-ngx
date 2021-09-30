@@ -1,18 +1,33 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'fdp-platform-binary-checkbox-no-form',
     templateUrl: 'platform-binary-checkbox-no-form.component.html'
 })
 export class PlatformChekboxNoFormComponent {
-    orion = true;
-    cygnus = false;
-    lyra = true;
-    gemini = false;
+    customForm = new FormGroup({});
+    readonly ctrl = new FormControl();
 
-    public checkedChangeFunction(event: any): void {}
+    constructor() {
+      this.ctrl.valueChanges.subscribe(v => this.ctrlModelChangeEventsList.push('valueChanges: ' + v))
+    }
 
-    public indeterminateChangeFunction(event: any): void {}
+    model = false;
 
-    public changeFunction(event: any): void {}
+    modelChangeEventsList: string[] = [];
+    ctrlModelChangeEventsList: string[] = [];
+
+    public onModelChange(event: boolean): void {
+      this.model = event;
+      this.modelChangeEventsList.push(`onModelChange: ${event}`);
+    }
+
+    public toggle(): void {
+      this.model = !this.model;
+    }
+
+    public toggleCtrlValue(emitEvent: boolean): void {
+      this.ctrl.setValue(!this.ctrl.value, {emitEvent});
+    }
 }

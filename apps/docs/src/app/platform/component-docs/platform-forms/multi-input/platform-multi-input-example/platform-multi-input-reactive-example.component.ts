@@ -73,6 +73,14 @@ export class PlatformMultiInputReactiveExampleComponent {
         return this.customForm.controls['item'];
     }
 
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('item').setValue([], {emitEvent});
+    }
+
     hasError(): boolean {
         return !this.hasValue();
     }

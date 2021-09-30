@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { ListDataSource, DataProvider } from '@fundamental-ngx/platform/shared';
 import { SelectionChangeEvent } from '@fundamental-ngx/platform/list';
+import { FormControl } from '@angular/forms';
 
 const LIST_ELEMENTS: Address[] = [
     { name: 'Name1' },
@@ -34,12 +35,20 @@ export class PlatformListWithSelectionExampleComponent implements AfterViewInit 
     _dataSource = new ListDataSource<Address>(new ListDataProvider());
     _selectedItems: Address[] = [];
 
-    constructor(private _render: Renderer2, private _elementRef: ElementRef) {}
+    ctrl = new FormControl([]);
+
+    constructor(private _render: Renderer2, private _elementRef: ElementRef) {
+        this.ctrl.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.ctrl.setValue(null, {emitEvent});
+    }
 
     ngAfterViewInit(): void {
         const toolbar = this._elementRef.nativeElement.querySelector('fd-toolbar');
-        this._render.setAttribute(toolbar, 'tabindex', '0' );
-        this._render.setStyle(toolbar, 'outline', 'none' );
+        // this._render.setAttribute(toolbar, 'tabindex', '0' );
+        // this._render.setStyle(toolbar, 'outline', 'none' );
     }
 
     _showItemInfo(event: SelectionChangeEvent): void {

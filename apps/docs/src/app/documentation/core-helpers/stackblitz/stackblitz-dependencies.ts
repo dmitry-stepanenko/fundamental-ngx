@@ -8,6 +8,7 @@ export class StackblitzDependencies {
         '@angular/animations',
         '@angular/cdk',
         '@angular/core',
+        '@angular/localize',
         '@angular/compiler',
         '@angular/common',
         '@angular/forms',
@@ -27,7 +28,7 @@ export class StackblitzDependencies {
     static GetDependencies(): object {
         const _dependencies: object = {};
 
-        this._libDependencies.forEach((libDep) => (_dependencies[libDep] = version));
+        this._libDependencies.forEach((libDep) => (_dependencies[libDep] = '*'));
 
         this._dependencies.forEach((dep) => {
             if (dependencies && dependencies[dep]) {

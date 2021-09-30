@@ -11,4 +11,12 @@ export class SwitchFormsExampleComponent {
         switch2: new FormControl(true),
         switch3: new FormControl(false)
     });
+
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('switch1').setValue(false, {emitEvent});
+    }
 }

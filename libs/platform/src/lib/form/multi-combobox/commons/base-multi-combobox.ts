@@ -1,4 +1,4 @@
-import {
+import { // TODO: cva test
     AfterViewInit,
     ChangeDetectorRef,
     ContentChildren,

@@ -84,6 +84,15 @@ export class PlatformRadioGroupListItemsExampleComponent {
             value: 'work'
         }
     ];
+    ctrl = new FormControl
+
+    constructor() {
+        this.ctrl.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.ctrl.setValue(null, {emitEvent});
+    }
 
     onSubmit(form: NgForm): void {
         if (this.form1.controls.radiolo1.status === 'INVALID' && form.submitted) {

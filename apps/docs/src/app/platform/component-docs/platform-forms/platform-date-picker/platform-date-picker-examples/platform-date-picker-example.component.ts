@@ -45,6 +45,14 @@ export class PlatformDatePickerExampleComponent {
     dateOutsideForm = '';
     rangeDateOutsideForm = '';
 
+    constructor() {
+        this.datePickerForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.datePickerForm.get('birthday').setValue(null, {emitEvent});
+    }
+
     public onSubmit(value: any): void {
         alert('Form Value: ' + value);
     }

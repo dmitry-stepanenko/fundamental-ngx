@@ -1,4 +1,4 @@
-import {
+import { // TODO: partially cva test: doesn't support reactive forms
     AfterContentInit,
     AfterViewInit,
     ChangeDetectionStrategy,

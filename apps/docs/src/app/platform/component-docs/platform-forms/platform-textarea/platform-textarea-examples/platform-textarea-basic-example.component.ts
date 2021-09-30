@@ -12,6 +12,7 @@ export class PlatformTextareaBasicExampleComponent {
 
     constructor() {
         this.form = new FormGroup({});
+        this.form.valueChanges.subscribe(console.log)
 
         this.data = new ReadonlyDescriptionObject(
             'This is a readonly description where you can scroll down to read but cannot edit anything. ' +
@@ -21,6 +22,10 @@ export class PlatformTextareaBasicExampleComponent {
                 'This is a readonly description where you can scroll down to read but cannot edit anything. ' +
                 'This is a readonly description where you can scroll down to read but cannot edit anything.'
         );
+    }
+
+    asd(emitEvent: boolean) {
+        this.form.get('basicTextarea').reset()
     }
 }
 class ReadonlyDescriptionObject {

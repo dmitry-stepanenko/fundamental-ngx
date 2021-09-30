@@ -1,6 +1,12 @@
-<fdp-form-group [noLabelLayout]="false" columnLayout="XL3-L2-M1-S1">
+
+ <button (click)="update(true)">update w\ event</button>
+ <button (click)="update(false)">update w\o event</button>
+ <button (click)="reset(true)">reset w\ event</button>
+ <button (click)="reset(false)">reset w\o event</button>
+ <fdp-form-group [noLabelLayout]="false" columnLayout="XL3-L2-M1-S1">
     <fdp-form-field id="standard" label="Standard" column="1">
         <fdp-combobox
+            [formControl]="ctrl"
             name="standard"
             placeholder="Type some text..."
             [dataSource]="dataSource"
@@ -8,6 +14,8 @@
         ></fdp-combobox>
         <p>Selected: {{ selectedItem1 }}</p>
     </fdp-form-field>
+
+   
 
     <fdp-form-field id="compact" label="Compact" column="1">
         <fdp-combobox

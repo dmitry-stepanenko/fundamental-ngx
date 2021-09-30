@@ -28,6 +28,14 @@ export class PlatformTimePickerReactiveExampleComponent {
         disableExample: new FormControl({ value: '', disabled: true }),
         nullValidity: new FormControl(new FdDate().setTime(0, 0, 0))
     });
+    
+    constructor() {
+        this.timePickerForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.timePickerForm.get('24-hour').setValue(null, {emitEvent});
+    }
 
     onSubmit(): void {
         if (this.timePickerForm.valid) {

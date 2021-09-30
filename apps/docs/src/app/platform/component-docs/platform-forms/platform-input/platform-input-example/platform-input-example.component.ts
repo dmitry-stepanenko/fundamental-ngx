@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'fdp-platform-input-example',
     templateUrl: './platform-input-example.component.html'
 })
-export class PlatformInputExampleComponent implements OnInit {
-    formTypesGroupRegister: FormGroup;
+export class PlatformInputExampleComponent  {
+    formTypesGroupRegister = new FormGroup({
+        input1: new FormControl
+    });
 
-    ngOnInit(): void {
-        this.formTypesGroupRegister = new FormGroup({});
+    constructor() {
+        this.formTypesGroupRegister.valueChanges.subscribe(console.log)
     }
+
+    asd(emitEvent: boolean) {
+        this.formTypesGroupRegister.get('input1').setValue(null, {emitEvent});
+    }
+
 }

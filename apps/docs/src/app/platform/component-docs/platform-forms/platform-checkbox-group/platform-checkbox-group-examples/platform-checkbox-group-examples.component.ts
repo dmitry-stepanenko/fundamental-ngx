@@ -22,6 +22,14 @@ export class PlatformCheckboxGroupExampleComponent {
     form1 = new FormGroup({});
     form2 = new FormGroup({});
     form3 = new FormGroup({});
+
+    constructor() {
+        this.form1.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.form1.get('fruitsEx')?.setValue([], {emitEvent})
+    }
 }
 
 class LanguageKnown implements SelectItem {

@@ -17,7 +17,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SliderFormFieldExampleComponent {
     customForm = new FormGroup({
         value1: new FormControl(15),
-        value2: new FormControl([15, 85])
+        value2: new FormControl(null)
     });
 
     get value1(): number {
@@ -26,5 +26,13 @@ export class SliderFormFieldExampleComponent {
 
     get value2(): [number, number] {
         return this.customForm.controls['value2'].value;
+    }
+
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('value2').reset(undefined, {emitEvent})
     }
 }

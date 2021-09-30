@@ -15,6 +15,14 @@ export class PlatformFileUploaderReactiveExampleComponent {
     customForm: FormGroup = new FormGroup({});
     requiredDateValidator: ValidatorFn[] = [Validators.required];
 
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('input1').setValue(null, {emitEvent});
+    }
+
     handleFileSelection(files: FileUploaderSelectionChangeEvent): void {
         this.files = files.payload;
         console.log(this.customForm);

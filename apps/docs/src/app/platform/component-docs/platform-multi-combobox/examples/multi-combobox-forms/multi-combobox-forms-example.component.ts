@@ -31,4 +31,13 @@ export class MultiComboboxFormsExampleComponent {
     onSelect(item: MultiComboboxSelectionChangeEvent): void {
         this.selectedItems = item.selectedItems;
     }
+
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('field').setValue([{ name: 'Apple', type: 'Fruits' },], {emitEvent});
+    }
+
 }

@@ -1,4 +1,4 @@
-import { NgControl, NgForm } from '@angular/forms';
+import { NgControl, NgForm } from '@angular/forms'; // TODO: verified cva test
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -270,6 +270,7 @@ export class PlatformDatePickerComponent<D> extends BaseInput {
      * @param value D | DateRange<D>
      */
     handleDateChange(value: D | DateRange<D>): void {
+        console.log(value);
         this.value = value;
         this.onTouched();
 

@@ -1,4 +1,6 @@
 <h3>Date Picker with Reactive Form.</h3>
+<button (click)="asd(false)">no event</button>
+<button (click)="asd(true)">event</button>
 <fdp-form-group #ffg [formGroup]="datePickerForm" [object]="formInitialData" (onSubmit)="onSubmit(ffg)" columnLayout="XL2-L2-M1-S1">
     <fdp-form-field #ffl1 id="birthday" column="1" rank="1" required="true" placeholder="Enter your birthday"
         label="Pre-populated single type date-picker:" [validators]="requiredDateValidator">

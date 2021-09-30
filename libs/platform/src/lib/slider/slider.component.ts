@@ -1,4 +1,4 @@
-import {
+import { // TODO: done partially cva test, reset doesn't work
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,

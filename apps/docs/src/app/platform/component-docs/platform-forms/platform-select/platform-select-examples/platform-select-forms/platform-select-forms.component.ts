@@ -29,6 +29,14 @@ export class PlatformSelectFormsComponent {
 
     selectedItem = null;
 
+    constructor() {
+        this.customForm.valueChanges.subscribe(console.log)
+    }
+
+    asd(emitEvent: boolean) {
+        this.customForm.get('field').setValue('Banana', {emitEvent});
+    }
+
     onSelect(item: FdpSelectionChangeEvent): void {
         this.selectedItem = item.payload;
     }
