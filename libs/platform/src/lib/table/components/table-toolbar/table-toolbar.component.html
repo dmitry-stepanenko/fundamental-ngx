@@ -21,10 +21,12 @@
             *ngIf="!hideSearchInput"
             i18n-placeholder="@@platformTableToolbarSearchPlaceholder"
             placeholder="Search"
+            [disabled]="tableLoading$ | async"
             [contentDensity]="_getCozyCompactSize(size)"
             [suggestions]="searchSuggestions"
             [ariaLabelledBy]="tableToolbarTitleId"
             (searchSubmit)="submitSearch($event)"
+            (cancelSearch)="submitSearch($event)"
         ></fdp-search-field>
 
         <ng-container *ngIf="tableToolbarActionsComponent">

@@ -35,7 +35,7 @@ import { TableService } from './table.service';
 import { CollectionFilter, CollectionGroup, CollectionSort, CollectionStringFilter, TableState } from './interfaces';
 import { SearchInput } from './interfaces/search-field.interface';
 import { FILTER_STRING_STRATEGY, SelectionMode, SortDirection, TableRowType } from './enums';
-import { DEFAULT_TABLE_STATE, ROW_HEIGHT, SELECTION_COLUMN_WIDTH } from './constants';
+import { DEFAULT_TABLE_STATE, ROW_HEIGHT, SELECTION_COLUMN_WIDTH, SEMANTIC_HIGHLIGHTING_COLUMN_WIDTH } from './constants';
 import { TableDataSource } from './domain/table-data-source';
 import { ArrayTableDataSource } from './domain/array-data-source';
 import { ObservableTableDataSource } from './domain/observable-data-source';
@@ -266,6 +266,10 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
      */
     @Input()
     rowComparator: RowComparator<T>;
+
+    /** Value with the key of the row item's field to compute semantic state of the row.  */
+    @Input()
+    semanticHighlighting: string;
 
     /** Event fired when table selection has changed. */
     @Output()
@@ -512,6 +516,11 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
     }
 
     /** @hidden */
+    private get _semanticHighlightingColumnWidth(): number {
+        return this.semanticHighlighting ? SEMANTIC_HIGHLIGHTING_COLUMN_WIDTH : 0;
+    }
+
+    /** @hidden */
     constructor(
         private readonly _ngZone: NgZone,
         private readonly _cdr: ChangeDetectorRef,
@@ -530,11 +539,20 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
             this._rowTrackBy = typeof this.trackBy === 'function' ? (index, item) => this.trackBy(index, item.value) : undefined;
         }
 
+        if ('loading' in changes) {
+            this._tableService.setTableLoading(this.loading);
+        }
+
+        // changes below should be checked only after view is initialized
         if (!this._viewInitiated) {
             return;
         }
 
-        if ('selectionMode' in changes || 'freezeColumnsTo' in changes) {
+        if ('selectionMode' in changes
+            || 'freezeColumnsTo' in changes
+            || 'semanticHighlighting' in changes
+            || 'contentDensity' in changes
+        ) {
             this.recalculateTableColumnWidth();
         }
 
@@ -744,8 +762,7 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
         this._tableColumnResizeService.setColumnsWidth(
             this._visibleColumns.map(column => column.name),
             this.freezeColumnsTo,
-            this._selectionColumnWidth,
-            this._scrollBarWidth
+            this._selectionColumnWidth + this._semanticHighlightingColumnWidth,
         );
         this._setFreezableInfo();
 
@@ -918,19 +935,28 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
     }
 
     /** @hidden */
+    _getSelectionCellStyles(): { [klass: string]: string } {
+        const key = this._rtl ? 'right' : 'left';
+        return { [key]: this._semanticHighlightingColumnWidth + 'px' };
+    }
+
+    /** @hidden */
     _getCellStyles(column: TableColumn): { [klass: string]: number | string } {
         const styles: { [property: string]: number | string } = {};
 
         if (this._freezableColumns.includes(column.name)) {
             const key = this._rtl ? 'margin-right.px' : 'margin-left.px';
-            styles[key] = this._selectionColumnWidth + this._tableColumnResizeService.getPrevColumnsWidth(column.name);
+            styles[key] =
+                this._semanticHighlightingColumnWidth
+                + this._selectionColumnWidth
+                + this._tableColumnResizeService.getPrevColumnsWidth(column.name);
         }
 
         const columnWidth = this._tableColumnResizeService.getColumnWidthStyle(column);
         styles['min-width'] = columnWidth;
         styles['max-width'] = columnWidth;
 
-        if (!this._isShownSelectionColumn || this.freezeColumnsTo) {
+        if (!this._isShownSelectionColumn && !this.semanticHighlighting || this.freezeColumnsTo) {
             styles['width'] = columnWidth;
         }
 
@@ -1386,7 +1412,11 @@ export class TableComponent<T = any> extends Table implements AfterViewInit, OnD
         this._freezableColumns = this._getFreezableColumns();
 
         const freezeToNextColumnName = this._visibleColumns[this._freezableColumns.length]?.name;
-        this._tablePadding = this._selectionColumnWidth + this._tableColumnResizeService.getPrevColumnsWidth(freezeToNextColumnName);
+
+        this._tablePadding =
+            this._semanticHighlightingColumnWidth
+            + this._selectionColumnWidth
+            + this._tableColumnResizeService.getPrevColumnsWidth(freezeToNextColumnName);
     }
 
     /** @hidden */
