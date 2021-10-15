@@ -50,7 +50,7 @@
         [readonly]="readOnly"
         [isControl]="true"
         [isExpanded]="!mobile && open && displayedValues.length"
-        [attr.aria-readonly]="readOnly"
+        [showFocus]="!clearInputBtnFocused"
         [glyphAriaLabel]="ariaLabel"
         [iconTitle]="title"
         (addOnButtonClicked)="onPrimaryButtonClick()"
@@ -69,6 +69,7 @@
             [attr.aria-haspopup]="autoComplete && !mobile"
             [attr.aria-expanded]="!mobile && open && displayedValues.length"
             [attr.aria-required]="required"
+            [attr.tabindex]="readOnly || disabled ? -1 : null"
             [enable]="autoComplete && !mobile"
             [displayFn]="displayFn"
             [options]="dropdownValues"
@@ -98,6 +99,8 @@
                 fdType="transparent"
                 title="Clear input"
                 [class.fd-button--compact]="compact"
+                (focus)="clearInputBtnFocus()"
+                (blur)="clearInputBtnBlur()"
                 (click)="_handleClearSearchTerm()"
             >
                 <fd-icon glyph="decline"></fd-icon>
@@ -128,6 +131,7 @@
                 <li
                     role="option"
                     fd-list-item
+                    [attr.aria-placeholder]="group.key"
                     tabindex="0"
                     class="fd-combobox-list-item"
                     *ngFor="let term of group.value"
